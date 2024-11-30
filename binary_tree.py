@@ -58,7 +58,7 @@ class BinaryTree:
         if isinstance(other, BinaryTree):
             self._merge_trees(self.root, other.root)
         else:
-            print("Cannot merge with a non-BinaryTree object.")
+            print("Cannot merge")
 
     def _merge_trees(self, node1, node2):
         if node2 is None:
