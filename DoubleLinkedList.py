@@ -78,7 +78,7 @@ class DoubleLinkedList:
 
     def DeleteFromEnd(self):
         if self.head is None:
-            return "La lista está vacía"
+            return "La lista esta vacia"
         last_node = self.head
         while last_node.next:
             last_node = last_node.next
@@ -147,21 +147,48 @@ class DoubleLinkedList:
             print(Current_node.data, end=' <-> ')
             Current_node = Current_node.next
         print(None)
-    
 
-#Pueba
-llist = DoubleLinkedList()
-llist.InsertList(1)
-llist.InsertList(2)
-llist.InsertList(3)
-llist.InsertList(4)
-llist.InsertList(5)
-llist.InsertList(6)
-print(llist.CountNodes())
-llist.InsertAtStart(0)
-llist.InsertAtEnd(7)
-print(llist.Predeccesor(2))
-print(llist.Succesor(2))
-llist.DeleteFromStart()
-print(llist.CountNodes())
-print(llist.PrintList())
+    def Move(self, data, new_data):
+        if self.head is None:
+            return "La lista esta vacia"
+        if self.head.data == data:
+            self.head.data = new_data
+            return
+        Current_node = self.head
+        while Current_node:
+            if Current_node.data == data:
+                Current_node.data = new_data
+                return
+            Current_node = Current_node.next
+        return "El dato no se encuentra en la lista"
+    
+    def Replace_Before(self, data, new_data):
+        if self.head is None:
+            return "La lista esta vacia"
+        if self.head.data == data:
+            return "No hay nodo anterior al primero"
+        Current_node = self.head
+        while Current_node:
+            if Current_node.data == data:
+                if Current_node.prev is not None:
+                    Current_node.prev.data = new_data
+                    return
+                else:
+                    return "No hay nodo anterior al nodo dado"
+            Current_node = Current_node.next
+        return "El dato no se encuentra en la lista"
+    
+    def Replace_After(self, data, new_data):
+        if self.head is None:
+            return "La lista esta vacia"
+        Current_node = self.head
+        while Current_node:
+            if Current_node.data == data:
+                if Current_node.next is not None:
+                    Current_node.next.data = new_data
+                    return
+                else:
+                    return "No hay nodo siguiente al nodo dado"
+            Current_node = Current_node.next
+        return "El dato no se encuentra en la lista"
+
